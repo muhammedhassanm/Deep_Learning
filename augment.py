@@ -1,9 +1,9 @@
-    # -*- coding: utf-8 -*-
-    """
-    Created on Mon Feb  3 14:39:14 2020
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Feb  3 14:39:14 2020
 
-    @author: 100119
-    """
+@author: 100119
+"""
 
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 import os
@@ -18,7 +18,7 @@ import os
 datagen = ImageDataGenerator(
             # featurewise_center = True,
             # featurewise_std_normalization=True,
-            rotation_range=2,
+            rotation_range=10,
             width_shift_range=0.01,
             height_shift_range=0.01,
             shear_range=0.1,
@@ -26,7 +26,7 @@ datagen = ImageDataGenerator(
             #horizontal_flip=True,
             fill_mode='nearest'
             )
-directory = 'C:/Users/100119/Desktop/DATA_SET/ORIGINAL_DATA/FORMAT_1'
+directory ='C:/Users/100119/Desktop/CAR_DETECTION/Dataset/car left right/car right'
 for filename in os.listdir(directory):
     img = load_img(directory+"/"+filename)  # this is a PIL image
     x = img_to_array(img)  # this is a Numpy array with shape (3, 150, 150)
@@ -37,8 +37,8 @@ for filename in os.listdir(directory):
     i = 0
     j = 0
     for batch in datagen.flow(x, batch_size=1,
-                              save_to_dir='C:/Users/100119/Desktop/DATA_SET/AUG_IMAGES/FORMAT_1', save_prefix="FORMAT_1_", save_format='jpg'):
+                              save_to_dir='C:/Users/100119/Desktop/CAR_DETECTION/Dataset/car left right/car_right_augmented', save_prefix="CAR_RIGHT_", save_format='jpg'):
         i += 1
         j += 1
-        if i > 100:
+        if i > 2:
             break  # otherwise the generator would loop indefinitely
